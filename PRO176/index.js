@@ -1,0 +1,82 @@
+let words = [
+    {
+        "inputs":5,
+        "category":"Sports",
+        "word":"Chess"
+        
+    },
+    {
+        "inputs":6,
+        "category":"European Country Name",
+        "word":"France"
+        
+    },
+    {
+        "inputs":8,
+        "category":"Indian Dish",
+        "word":"Chokha Batee"
+        
+    },
+    {
+        "inputs":2,
+        "category":"Outfit",
+        "word":"Pajama"
+        
+    },
+
+]
+
+
+var gameOver=false
+
+//Fill blanks only if the character match is found
+$(".clickable").click(function (){
+    var correctGuess = false;
+
+    //Get the id of the utton clicked
+    let id =$().attr("id");
+
+   
+
+    //get the life
+    var life = parseInt($("#life").text())
+
+    //Loop through all the letters
+    for(var i = 0; i < randomWord.word.length; i++){
+
+        //check if the character matches the id of the button
+        if(randomWord.word.charAt(i).toLowerCase() == id) {
+
+            //check if the life is still left and blank is empty/already filled
+            if(life > 0 && ($(".fill_blanks").eq(i).html() == "_" ||
+            $(".fill_blanks").eq(i).html() == id 
+            )) {
+
+                //fill blanks
+                $(".fill_blanks").eq(i).html(id);
+                correctGuess = true;
+
+
+                //Check if the word guess is complete
+
+                 if ($("#blanks").text() === randomWord.word.toLowerCase()) {
+                    $("#result").text("YOU WIN !!")
+                    correctGuess = true;
+                    gameOver = true
+
+                }
+
+                if(life > 0){
+                    correctGuess = false;
+                    gameOver = false
+                }
+
+                $(fill_blank).ready(function(){
+                    $("button").click(function(){
+                      $("#test").hide();
+                    });
+                  });
+            }
+        }
+    }
+})
